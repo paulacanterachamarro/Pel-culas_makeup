@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieDatabase - Tu Base de Datos de Películas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🎬 MovieDatabase</h1>
+            <p class="tagline">Descubre, busca y explora el mundo del cine</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar películas..." aria-label="Buscar películas">
+                <button id="searchBtn" aria-label="Buscar">🔍 Buscar</button>
+            </div>
+            <div class="filters">
+                <select id="genreFilter" aria-label="Filtrar por género">
+                    <option value="">Todos los géneros</option>
+                    <option value="accion">Acción</option>
+                    <option value="comedia">Comedia</option>
+                    <option value="drama">Drama</option>
+                    <option value="terror">Terror</option>
+                    <option value="ciencia-ficcion">Ciencia Ficción</option>
+                    <option value="animacion">Animación</option>
+                </select>
+                <select id="yearFilter" aria-label="Filtrar por año">
+                    <option value="">Todos los años</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="movies-section">
+            <h2>Películas Populares</h2>
+            <div id="moviesGrid" class="movies-grid">
+                <!-- Las películas se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+
+        <div id="loadingSpinner" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Cargando películas...</p>
+        </div>
+    </main>
+
+    <!-- Modal para detalles de película -->
+    <div id="movieModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal" aria-label="Cerrar">&times;</button>
+            <div id="modalBody">
+                <!-- Contenido del modal se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MovieDatabase. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
