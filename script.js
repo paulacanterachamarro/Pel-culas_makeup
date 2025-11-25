@@ -188,6 +188,18 @@ function setupEventListeners() {
             closeModal();
         }
     });
+    
+    // Section toggle buttons
+    const toggleButtons = document.querySelectorAll('.section-toggle button');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            toggleButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // Shuffle movies to simulate different content
+            currentMovies = [...moviesDatabase].sort(() => Math.random() - 0.5);
+            renderMovies(currentMovies);
+        });
+    });
 }
 
 // Función de debounce para optimizar búsquedas
@@ -263,44 +275,64 @@ function renderMovies(movies) {
     });
 }
 
-// Crear tarjeta de película
+// Crear tarjeta de película - TMDB Style
 function createMovieCard(movie) {
+    const ratingPercent = Math.round(movie.rating * 10);
+    let ratingClass = 'high';
+    if (ratingPercent < 70) ratingClass = 'medium';
+    if (ratingPercent < 40) ratingClass = 'low';
+    
+    // Format date like TMDB
+    const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const day = Math.floor(Math.random() * 28) + 1;
+    const month = Math.floor(Math.random() * 12);
+    const dateStr = `${day} ${months[month]} ${movie.year}`;
+    
     return `
         <article class="movie-card" data-id="${movie.id}">
-            <img src="${movie.poster}" alt="Póster de ${movie.title}" loading="lazy">
+            <div class="poster-wrapper">
+                <img src="${movie.poster}" alt="Póster de ${movie.title}" loading="lazy">
+            </div>
             <div class="movie-info">
+                <div class="rating-circle ${ratingClass}">${ratingPercent}<span>%</span></div>
                 <h3 class="movie-title">${movie.title}</h3>
-                <p class="movie-year">${movie.year}</p>
-                <div class="movie-rating">
-                    <span>⭐</span>
-                    <span>${movie.rating}</span>
-                </div>
-                <span class="movie-genre">${movie.genreLabel}</span>
+                <p class="movie-year">${dateStr}</p>
             </div>
         </article>
     `;
 }
 
-// Abrir modal de película
+// Abrir modal de película - TMDB Style
 function openMovieModal(movieId) {
     const movie = moviesDatabase.find(m => m.id === movieId);
     if (!movie) return;
 
+    const ratingPercent = Math.round(movie.rating * 10);
+    
     modalBody.innerHTML = `
         <div class="modal-body">
             <div class="modal-poster">
                 <img src="${movie.poster}" alt="Póster de ${movie.title}">
             </div>
             <div class="modal-details">
-                <h2>${movie.title}</h2>
-                <p><span class="detail-label">Año:</span> ${movie.year}</p>
-                <p><span class="detail-label">Director:</span> ${movie.director}</p>
-                <p><span class="detail-label">Duración:</span> ${movie.duration}</p>
-                <p><span class="detail-label">Género:</span> ${movie.genreLabel}</p>
-                <p><span class="detail-label">Calificación:</span> ⭐ ${movie.rating}/10</p>
+                <h2>${movie.title} <span style="font-weight: 400; color: #9ab;">(${movie.year})</span></h2>
+                <p style="margin-bottom: 20px;"><span style="border: 1px solid #9ab; padding: 2px 6px; border-radius: 3px; margin-right: 10px;">PG-13</span> ${movie.genreLabel} • ${movie.duration}</p>
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #081c22; border: 4px solid #21d07a; display: flex; align-items: center; justify-content: center; font-weight: 700;">${ratingPercent}<span style="font-size: 0.6em;">%</span></div>
+                        <span style="font-weight: 600;">Puntuación<br>de usuarios</span>
+                    </div>
+                </div>
+                <p style="font-style: italic; color: #9ab; margin-bottom: 15px;">Una historia épica de ${movie.genreLabel.toLowerCase()}</p>
+                <h4 style="margin-bottom: 8px;">Sinopsis</h4>
                 <div class="modal-description">
-                    <p><span class="detail-label">Sinopsis:</span></p>
                     <p>${movie.description}</p>
+                </div>
+                <div style="margin-top: 25px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div>
+                        <p style="font-weight: 700; color: #fff; margin-bottom: 0;">${movie.director}</p>
+                        <p style="font-size: 0.85rem;">Director</p>
+                    </div>
                 </div>
             </div>
         </div>
