@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieDatabase - Tu Base de Datos de Películas</title>
+    <title>TMDB - The Movie Database</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>🎬 MovieDatabase</h1>
-            <p class="tagline">Descubre, busca y explora el mundo del cine</p>
+            <h1><a href="#">TMDB</a></h1>
+            <nav class="nav-links">
+                <a href="#">Películas</a>
+                <a href="#">Series TV</a>
+                <a href="#">Personas</a>
+                <a href="#">Más</a>
+            </nav>
         </div>
     </header>
 
+    <!-- Hero Section with Search -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2>Bienvenido.</h2>
+            <p>Millones de películas, series y personas por descubrir. Explora ahora.</p>
+            <div class="hero-search">
+                <input type="text" id="searchInput" placeholder="Buscar una película, serie o persona..." aria-label="Buscar">
+                <button id="searchBtn">Buscar</button>
+            </div>
+        </div>
+    </section>
+
     <main class="container">
         <section class="search-section">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar películas..." aria-label="Buscar películas">
-                <button id="searchBtn" aria-label="Buscar">🔍 Buscar</button>
-            </div>
             <div class="filters">
                 <select id="genreFilter" aria-label="Filtrar por género">
                     <option value="">Todos los géneros</option>
@@ -42,7 +56,12 @@
         </section>
 
         <section class="movies-section">
-            <h2>Películas Populares</h2>
+            <h2>En Tendencia
+                <div class="section-toggle">
+                    <button class="active" data-filter="day">Hoy</button>
+                    <button data-filter="week">Esta semana</button>
+                </div>
+            </h2>
             <div id="moviesGrid" class="movies-grid">
                 <!-- Las películas se cargarán dinámicamente aquí -->
             </div>
@@ -66,7 +85,41 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 MovieDatabase. Todos los derechos reservados.</p>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Lo Básico</h4>
+                    <ul>
+                        <li><a href="#">Acerca de TMDB</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Foros de soporte</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Involúcrate</h4>
+                    <ul>
+                        <li><a href="#">Guía de contribución</a></li>
+                        <li><a href="#">Añadir nueva película</a></li>
+                        <li><a href="#">Añadir nueva serie</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Comunidad</h4>
+                    <ul>
+                        <li><a href="#">Directrices</a></li>
+                        <li><a href="#">Discusiones</a></li>
+                        <li><a href="#">Tabla de líderes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Términos de uso</a></li>
+                        <li><a href="#">Políticas de API</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 
