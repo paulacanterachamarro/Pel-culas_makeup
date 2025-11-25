@@ -4,9 +4,11 @@ const moviesDatabase = [
         id: 1,
         title: "El Padrino",
         year: 2022,
+        releaseDate: "24 mar 1972",
         genre: "drama",
         genreLabel: "Drama",
         rating: 9.2,
+        contentRating: "R",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=El+Padrino",
         director: "Francis Ford Coppola",
         duration: "175 min",
@@ -15,10 +17,12 @@ const moviesDatabase = [
     {
         id: 2,
         title: "Interestelar",
-        year: 2024,
+        year: 2014,
+        releaseDate: "7 nov 2014",
         genre: "ciencia-ficcion",
         genreLabel: "Ciencia Ficción",
         rating: 8.7,
+        contentRating: "PG-13",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Interestelar",
         director: "Christopher Nolan",
         duration: "169 min",
@@ -27,10 +31,12 @@ const moviesDatabase = [
     {
         id: 3,
         title: "Toy Story 5",
-        year: 2024,
+        year: 2026,
+        releaseDate: "19 jun 2026",
         genre: "animacion",
         genreLabel: "Animación",
         rating: 8.3,
+        contentRating: "G",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Toy+Story+5",
         director: "Pixar Studios",
         duration: "100 min",
@@ -39,10 +45,12 @@ const moviesDatabase = [
     {
         id: 4,
         title: "Misión Imposible 8",
-        year: 2023,
+        year: 2025,
+        releaseDate: "23 may 2025",
         genre: "accion",
         genreLabel: "Acción",
         rating: 7.9,
+        contentRating: "PG-13",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Mision+Imposible",
         director: "Christopher McQuarrie",
         duration: "163 min",
@@ -52,9 +60,11 @@ const moviesDatabase = [
         id: 5,
         title: "Superbad 2",
         year: 2023,
+        releaseDate: "15 ago 2023",
         genre: "comedia",
         genreLabel: "Comedia",
         rating: 7.5,
+        contentRating: "R",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Superbad+2",
         director: "Greg Mottola",
         duration: "113 min",
@@ -63,10 +73,12 @@ const moviesDatabase = [
     {
         id: 6,
         title: "El Exorcista: Origen",
-        year: 2024,
+        year: 2023,
+        releaseDate: "13 oct 2023",
         genre: "terror",
         genreLabel: "Terror",
         rating: 7.8,
+        contentRating: "R",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=El+Exorcista",
         director: "David Gordon Green",
         duration: "121 min",
@@ -76,9 +88,11 @@ const moviesDatabase = [
         id: 7,
         title: "Dune: Parte Dos",
         year: 2024,
+        releaseDate: "1 mar 2024",
         genre: "ciencia-ficcion",
         genreLabel: "Ciencia Ficción",
         rating: 8.9,
+        contentRating: "PG-13",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Dune+2",
         director: "Denis Villeneuve",
         duration: "166 min",
@@ -88,9 +102,11 @@ const moviesDatabase = [
         id: 8,
         title: "Oppenheimer",
         year: 2023,
+        releaseDate: "21 jul 2023",
         genre: "drama",
         genreLabel: "Drama",
         rating: 8.6,
+        contentRating: "R",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Oppenheimer",
         director: "Christopher Nolan",
         duration: "180 min",
@@ -100,9 +116,11 @@ const moviesDatabase = [
         id: 9,
         title: "Spider-Man: Beyond",
         year: 2024,
+        releaseDate: "12 jul 2024",
         genre: "accion",
         genreLabel: "Acción",
         rating: 8.2,
+        contentRating: "PG-13",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Spider-Man",
         director: "Jon Watts",
         duration: "148 min",
@@ -112,9 +130,11 @@ const moviesDatabase = [
         id: 10,
         title: "Inside Out 3",
         year: 2024,
+        releaseDate: "14 jun 2024",
         genre: "animacion",
         genreLabel: "Animación",
         rating: 8.4,
+        contentRating: "PG",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Inside+Out+3",
         director: "Pete Docter",
         duration: "96 min",
@@ -124,9 +144,11 @@ const moviesDatabase = [
         id: 11,
         title: "Alien: Romulus",
         year: 2024,
+        releaseDate: "16 ago 2024",
         genre: "terror",
         genreLabel: "Terror",
         rating: 7.6,
+        contentRating: "R",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Alien+Romulus",
         director: "Fede Álvarez",
         duration: "119 min",
@@ -136,9 +158,11 @@ const moviesDatabase = [
         id: 12,
         title: "Barbie World",
         year: 2023,
+        releaseDate: "21 jul 2023",
         genre: "comedia",
         genreLabel: "Comedia",
         rating: 7.7,
+        contentRating: "PG-13",
         poster: "https://via.placeholder.com/300x450/1a1a1a/e50914?text=Barbie+World",
         director: "Greta Gerwig",
         duration: "114 min",
@@ -282,12 +306,6 @@ function createMovieCard(movie) {
     if (ratingPercent < 70) ratingClass = 'medium';
     if (ratingPercent < 40) ratingClass = 'low';
     
-    // Format date like TMDB
-    const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-    const day = Math.floor(Math.random() * 28) + 1;
-    const month = Math.floor(Math.random() * 12);
-    const dateStr = `${day} ${months[month]} ${movie.year}`;
-    
     return `
         <article class="movie-card" data-id="${movie.id}">
             <div class="poster-wrapper">
@@ -296,7 +314,7 @@ function createMovieCard(movie) {
             <div class="movie-info">
                 <div class="rating-circle ${ratingClass}">${ratingPercent}<span>%</span></div>
                 <h3 class="movie-title">${movie.title}</h3>
-                <p class="movie-year">${dateStr}</p>
+                <p class="movie-year">${movie.releaseDate}</p>
             </div>
         </article>
     `;
@@ -315,23 +333,23 @@ function openMovieModal(movieId) {
                 <img src="${movie.poster}" alt="Póster de ${movie.title}">
             </div>
             <div class="modal-details">
-                <h2>${movie.title} <span style="font-weight: 400; color: #9ab;">(${movie.year})</span></h2>
-                <p style="margin-bottom: 20px;"><span style="border: 1px solid #9ab; padding: 2px 6px; border-radius: 3px; margin-right: 10px;">PG-13</span> ${movie.genreLabel} • ${movie.duration}</p>
-                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #081c22; border: 4px solid #21d07a; display: flex; align-items: center; justify-content: center; font-weight: 700;">${ratingPercent}<span style="font-size: 0.6em;">%</span></div>
-                        <span style="font-weight: 600;">Puntuación<br>de usuarios</span>
+                <h2>${movie.title} <span class="modal-year-span">(${movie.year})</span></h2>
+                <p class="modal-meta"><span class="modal-rating-badge">${movie.contentRating}</span> ${movie.genreLabel} • ${movie.duration}</p>
+                <div class="modal-rating-section">
+                    <div class="modal-rating-circle">
+                        <div class="rating-display">${ratingPercent}<span>%</span></div>
+                        <span class="modal-rating-label">Puntuación<br>de usuarios</span>
                     </div>
                 </div>
-                <p style="font-style: italic; color: #9ab; margin-bottom: 15px;">Una historia épica de ${movie.genreLabel.toLowerCase()}</p>
-                <h4 style="margin-bottom: 8px;">Sinopsis</h4>
-                <div class="modal-description">
+                <p class="modal-tagline">Una historia épica de ${movie.genreLabel.toLowerCase()}</p>
+                <div class="modal-synopsis">
+                    <h4>Sinopsis</h4>
                     <p>${movie.description}</p>
                 </div>
-                <div style="margin-top: 25px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                    <div>
-                        <p style="font-weight: 700; color: #fff; margin-bottom: 0;">${movie.director}</p>
-                        <p style="font-size: 0.85rem;">Director</p>
+                <div class="modal-crew">
+                    <div class="modal-crew-member">
+                        <p class="name">${movie.director}</p>
+                        <p class="role">Director</p>
                     </div>
                 </div>
             </div>
